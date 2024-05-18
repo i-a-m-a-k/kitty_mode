@@ -4,7 +4,7 @@
 
 kitty_mode() {
 	clear "$@"												# clear with whatever arguments are passed
-	cat "./ascii_arts/$(ls ./ascii_arts | shuf -n 1)"       # print the ascii art
+	cat "./ascii_arts/$(ls ./ascii_arts | awk 'BEGIN{srand();}{a[NR]=$0}END{print a[int(rand()*NR)+1]}')"       # print the ascii art
 	printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' _ # fill line with `_`
 }
 
